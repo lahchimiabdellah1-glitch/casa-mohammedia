@@ -87,7 +87,7 @@ label{font-weight:700;font-size:14px}
 2. Cherche le code que le pro a entré<br>
 3. Vérifie : <b>Montant = 99 DH ? Date = aujourd'hui / récente ? Nom de l'envoyeur = Nom du pro ?</b><br>
 4. Si montant ≠ 99 DH, ou date vieille, ou nom différent → c'est un code pour un autre service ou périmé / faux → clique sur <b>Refuser / Supprimer</b>.</div>
-<div class="card"><h3>Professionnels / Demandes</h3><div class="counts" id="counts"></div><div id="listeAgents"></div></div>
+<div class="card"><h3>Professionnels / Demandes</h3><button class="b-client" onclick="reparerSync()">🔄 Réparer / Synchroniser - Si un pro Activé ne s'affiche pas en Zone Client, clique ici</button><div class="counts" id="counts"></div><div id="listeAgents"></div></div>
 <div class="card"><h3>➕ Ajouter un professionnel manuellement (par le Directeur)</h3>
 <p class="small"><b>Ajout Directeur : manuel, sans code Cash Plus. Le professionnel est activé directement.</b></p>
 <label>Prénom / Nom *</label><input id="pPrenom" placeholder="Ex: Karim">
@@ -184,8 +184,19 @@ function setStatut(i,s){
  agents[i].statut=s;
  if(s==="active"){let d=new Date(); d.setDate(d.getDate()+30); agents[i].date="Activé jusqu'au "+d.toLocaleDateString("fr-FR");}
  let p=pros.find(x=>x.n.toLowerCase()===agents[i].nom.toLowerCase());
- if(p){p.statut=s; if(s==="active") p.date=agents[i].date;}
+ if(p){p.statut=s; if(s==="active") p.date=agents[i].date; p.wa=agents[i].wa; p.tel=agents[i].tel;}
+ else {pros.unshift({n:agents[i].nom,m:agents[i].metier,q:agents[i].quartier||"Maarif",note:5,prix:agents[i].prix||200,wa:agents[i].wa,tel:agents[i].tel,statut:s,code:agents[i].code,date:agents[i].date});}
  saveAgents(); savePros(); render();
+}
+function reparerSync(){
+ // Recrée la liste pros depuis agents pour réparer la désynchronisation (Ahmed/Imane activés mais invisibles)
+ agents.forEach(a=>{
+   let p=pros.find(x=>x.n.toLowerCase()===a.nom.toLowerCase());
+   if(p){p.statut=a.statut; p.wa=a.wa; p.tel=a.tel; p.q=a.quartier||p.q; p.prix=a.prix||p.prix;}
+   else {pros.unshift({n:a.nom,m:a.metier,q:a.quartier||"Maarif",note:5,prix:a.prix||200,wa:a.wa,tel:a.tel,statut:a.statut,code:a.code,date:a.date});}
+ });
+ // Si pros est vide mais agents ne l'est pas, on a déjà réparé. Si les 2 sont vides, on remet les démos.
+ saveAgents(); savePros(); render(); alert("Synchronisation faite ! Les professionnels Activés doivent maintenant apparaître dans la Zone Client. Clique sur 'Tous' en haut de la Zone Client.");
 }
 function supprimerAgent(i){
  let nom=agents[i].nom;
