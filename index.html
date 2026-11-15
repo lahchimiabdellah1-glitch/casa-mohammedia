@@ -49,7 +49,7 @@ label{font-weight:700;font-size:14px}
 <div class="card"><b>Quartiers :</b> <span id="quartiersPlate"></span></div>
 </div>
 <div id="client" class="hidden">
-<div class="card"><input id="q" placeholder="Chercher : Plomberie, Électricité, Ménage..." oninput="render()"><div id="quartiers"></div></div>
+<div class="card"><input id="q" placeholder="Chercher : Plomberie, Électricité, Ménage..." oninput="render()" autocomplete="off" autocorrect="off" spellcheck="false" name="recherche-client-ne-pas-remplir"><button class="b-client" onclick="document.getElementById('q').value='';render()" style="margin-top:8px">✖ Effacer la recherche</button><div id="quartiers"></div></div>
 <div id="liste"></div>
 <div class="disclaimer">⚠️ <b>Important - À lire avant de contacter</b><br><br>Casa-Mohammedia Services est uniquement une plateforme de mise en relation entre le client et le professionnel.<br><br>La Direction <b>n'est pas responsable</b> en cas de conflit, de désaccord, de retard, de mauvaise qualité du travail, de prix non respecté, ou de problème de paiement entre le client et le professionnel.<br><br>Le client et le professionnel doivent se mettre d'accord entre eux, avant de commencer le travail, sur le prix, le délai et les détails du service.<br>En utilisant cette plateforme, vous acceptez que tout accord, paiement ou litige se règle directement entre vous, sans engager la responsabilité de la Direction.<br><br>Seuls les professionnels <b>Activés</b> par la Direction sont affichés ici.</div>
 </div>
@@ -115,6 +115,7 @@ let agents = JSON.parse(localStorage.getItem("agents_casa")||'[]');
 if(agents.length===0){agents=pros.map(p=>({nom:p.n,metier:p.m,code:p.code,statut:p.statut,date:p.date,wa:p.wa,tel:p.tel,quartier:p.q,prix:p.prix})); saveAgents();}
 let mode = localStorage.getItem("mode_casa")||"manuel";
 let qSel="Tous";
+window.addEventListener("load",()=>{let qi=document.getElementById("q"); if(qi){qi.value=""; qi.setAttribute("autocomplete","off");} qSel="Tous"; render();});
 function savePros(){localStorage.setItem("pros_casa",JSON.stringify(pros));}
 function saveAgents(){localStorage.setItem("agents_casa",JSON.stringify(agents));}
 function saveQuartiers(){localStorage.setItem("quartiers_casa",JSON.stringify(quartiers));}
