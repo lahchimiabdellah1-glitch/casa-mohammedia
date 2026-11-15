@@ -54,6 +54,8 @@ label{font-weight:700;font-size:14px}
 <div class="disclaimer">⚠️ <b>Important - À lire avant de contacter</b><br><br>Casa-Mohammedia Services est uniquement une plateforme de mise en relation entre le client et le professionnel.<br><br>La Direction <b>n'est pas responsable</b> en cas de conflit, de désaccord, de retard, de mauvaise qualité du travail, de prix non respecté, ou de problème de paiement entre le client et le professionnel.<br><br>Le client et le professionnel doivent se mettre d'accord entre eux, avant de commencer le travail, sur le prix, le délai et les détails du service.<br>En utilisant cette plateforme, vous acceptez que tout accord, paiement ou litige se règle directement entre vous, sans engager la responsabilité de la Direction.<br><br>Seuls les professionnels <b>Activés</b> par la Direction sont affichés ici.</div>
 </div>
 <div id="presta" class="hidden">
+<div class="card" id="loginPro"><h3>ZONE PROFESSIONNEL - Code d'accès</h3><p class="small">Cette zone est réservée aux professionnels. Entrez le code que la Direction vous a donné. Les clients ne peuvent pas y entrer.</p><input id="codePro" placeholder="Code Professionnel" type="password"><button class="b-presta" style="width:100%" onclick="loginPro()">Entrer</button><p class="small" id="msgPro" style="color:#dc2626"></p><p class="small">Demandez le code à la Direction sur WhatsApp.</p></div>
+<div id="panelPro" class="hidden">
 <div class="card"><h3>ZONE PROFESSIONNEL - Inscription</h3>
 <div class="big"><div class="price">Abonnement : 99 DH / mois</div><div style="font-weight:800">Activités illimitées</div>
 <div style="margin-top:14px;font-weight:800">Versez vos 99 DH sur ce compte Cash Plus :</div><div class="cash">0701295878</div>
@@ -71,6 +73,7 @@ label{font-weight:700;font-size:14px}
 <div id="msgAgent" class="small" style="margin-top:8px"></div>
 <a id="waAgent" class="wa" href="#" target="_blank">Contacter la Direction sur WhatsApp</a>
 <p class="small">Mettez le même nom que vous avez mis chez Cash Plus, pour que la Direction vous reconnaisse. Seule vérification : le code de transaction. Mode MANUEL : vous restez en attente jusqu'à ce que la Direction vérifie votre code et vous active.</p>
+</div></div>
 </div></div>
 <div id="admin" class="hidden">
 <div class="card" id="loginAdmin"><h3>ZONE DIRECTION - Pour toi seul</h3><p class="small">Entrez votre code Direction</p><input id="codeAdmin" placeholder="Code Direction" type="password"><button class="b-admin" style="width:100%" onclick="login()">Entrer</button><p class="small">Démo : entrez n'importe quel code pour ouvrir (à remplacer par votre vrai code serveur).</p></div>
@@ -132,6 +135,7 @@ function render(){
  if(document.getElementById("pQuartier")) document.getElementById("pQuartier").innerHTML=opts;
  renderAgents(); renderQuartiersDirection();
 }
+function loginPro(){let c=document.getElementById("codePro").value.trim(); if(c==="2026"){document.getElementById("loginPro").classList.add("hidden"); document.getElementById("panelPro").classList.remove("hidden");} else {document.getElementById("msgPro").textContent="❌ Code incorrect. Demandez le code à la Direction.";}}
 function login(){document.getElementById("loginAdmin").classList.add("hidden");document.getElementById("panelAdmin").classList.remove("hidden");renderAgents();renderQuartiersDirection();}
 function setMode(m){mode=m;localStorage.setItem("mode_casa",m);document.getElementById("modeLabel2").textContent=m==="manuel"?"MANUEL":"AUTOMATIQUE";document.querySelectorAll('input[name="mode"]').forEach(r=>r.checked=(r.value===m));}
 function renouveler(){
