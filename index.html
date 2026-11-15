@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Casa-Mohammedia Services</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f6f6f6;color:#222}
+header{background:#fff;padding:14px;text-align:center;box-shadow:0 2px 8px #0001}
+h1{margin:4px 0;font-size:22px}
+.tabs{display:flex;gap:6px;justify-content:center;padding:10px;flex-wrap:wrap}
+button{border:0;border-radius:999px;padding:12px 16px;font-weight:700;cursor:pointer}
+.b-plate{background:#0f172a;color:#fff}.b-client{background:#16a34a;color:#fff}.b-presta{background:#f97316;color:#fff}.b-admin{background:#dc2626;color:#fff}
+.wrap{max-width:720px;margin:0 auto;padding:12px}
+.card{background:#fff;border-radius:16px;padding:16px;margin:10px 0;box-shadow:0 2px 10px #0001}
+.big{background:#fff7ed;border:2px solid #f97316;border-radius:16px;padding:16px;text-align:center}
+.price{font-size:26px;font-weight:900}
+.cash{font-size:32px;font-weight:900;letter-spacing:1px;color:#9a3412;margin:8px 0}
+.pill{display:inline-block;background:#eee;border-radius:999px;padding:6px 10px;margin:3px;cursor:pointer}
+.pill.on{background:#16a34a;color:#fff}
+input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0;box-sizing:border-box}
+.wa{display:block;text-align:center;background:#25D366;color:#fff;padding:14px;border-radius:12px;text-decoration:none;font-weight:800;margin-top:10px}
+.muted{color:#666;font-size:14px}.hidden{display:none}
+.disclaimer{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px;text-align:center;color:#334155;font-size:14px;line-height:1.5}
+.agent{border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin:8px 0}
+.agent.attente{background:#fefce8;border-color:#facc15}.agent.active{background:#f0fdf4;border-color:#22c55e}.agent.non{background:#f8fafc;border-color:#cbd5e1}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800}
+.counts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.counts span{background:#fff;border:1px solid #ddd;border-radius:999px;padding:6px 10px;font-size:13px;font-weight:700}
+.small{font-size:13px;color:#475569}
+.qrow{display:flex;gap:6px;align-items:center;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:8px 10px;margin:6px 0}
+.qrow b{flex:1}.del{background:#fee2e2;color:#dc2626;padding:6px 10px;border-radius:999px}
+</style><link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16a34a"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Casa-Mohammedia">
+<link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="icon-192.png">
+</head><body>
+<header><h1>Casa-Mohammedia Services</h1><div class="muted">Trouvez quelqu'un de confiance, aujourd'hui.</div><div style="display:inline-block;background:#dcfce7;border:1px solid #16a34a;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;margin-top:6px">🔒 SÉCURITÉ FORTE - Codes vérifiés sur serveur</div><div class="muted" id="modeLabel">Vous êtes sur : PLATEFORME</div></header>
+<div class="tabs">
+<button class="b-plate" onclick="show('plate')">PLATEFORME</button>
+<button class="b-client" onclick="show('client')">ZONE CLIENT</button>
+<button class="b-presta" onclick="show('presta')">ZONE PROFESSIONNEL</button>
+<button class="b-admin" onclick="show('admin')">ZONE DIRECTION</button>
+</div><div class="wrap">
+<div id="plate">
+<div class="card"><h2>Bienvenue sur la Plateforme</h2><p>La plateforme met en relation le <b>client</b> et le <b>professionnel</b> à Casablanca et Mohammedia.</p><p>Client : cherche un professionnel, vois son prix, contacte-le sur WhatsApp.</p></div>
+<div class="card"><b>Quartiers :</b> <span id="quartiersPlate"></span></div>
+</div>
+<div id="client" class="hidden">
+<div class="card"><input id="q" placeholder="Chercher : Plomberie, Électricité, Ménage..." oninput="render()"><div id="quartiers"></div></div>
+<div id="liste"></div>
+<div class="disclaimer">ℹ️<br>La plateforme ne fait que mettre en relation le client et le professionnel. Elle n'est pas responsable des conflits, de la qualité du service, ni des paiements entre eux.</div>
+</div>
+<div id="presta" class="hidden">
+<div class="card" id="loginAgent"><h3>ZONE PROFESSIONNEL - Accès réservé</h3><p class="small">Entrez votre code d'accès Professionnel</p><input id="codeAgentInput" placeholder="Code d'accès Professionnel" type="password"><button class="b-presta" style="width:100%" onclick="loginAgent()">Entrer</button><div id="msgCodeIncorrect" class="small" style="margin-top:8px;color:#dc2626;font-weight:700"></div><p class="small">Si vous n'avez pas le code, contactez la Direction.</p></div>
+<div id="panelAgent" class="hidden"><div class="big">
+<div class="price">Abonnement : 99 DH / mois</div><div style="font-weight:800">Activités illimitées</div>
+<div style="margin-top:14px;font-weight:800">Versez vos 99 DH sur ce compte Cash Plus :</div><div class="cash">0701295878</div>
+<div style="font-weight:700">Versez vos 99 DH sur ce compte Cash Plus : 0701295878. C'est le compte de versement officiel de la plateforme.</div>
+<p class="small">Allez chez Cash Plus ou dans votre application Cash Plus, envoyez 99 DH à ce numéro, gardez le code de transaction, puis entrez-le ci-dessous.</p>
+<p><b>Étape 1 :</b> Payez 99 DH sur le compte 0701295878<br><b>Étape 2 :</b> Gardez le code de transaction sur votre reçu<br><b>Étape 3 :</b> Entrez votre Nom + Code ci-dessous. Ce code est votre code de renouvellement.</p>
+<input id="aNom" placeholder="Nom complet du professionnel ex : Ahmed El Fassi">
+<input id="aCode" placeholder="Code de transaction Cash Plus = Code de renouvellement">
+<input id="aMetier" placeholder="Métier ex : Plombier (optionnel)">
+<button class="b-presta" style="width:100%" onclick="renouveler()">Renouveler mon abonnement</button>
+<a class="wa" id="waAgent" href="https://wa.me/212701295878?text=Bonjour" target="_blank">Contacter la Direction sur WhatsApp</a>
+<div id="msgAgent" class="small" style="margin-top:8px"></div>
+<p class="small">Mettez le même nom que vous avez mis dans l'application / que vous utilisez chez Cash Plus, pour que la Direction vous reconnaisse. Pas de photo à envoyer. Seule vérification : le code de transaction.</p>
+</div></div></div>
+<div id="admin" class="hidden">
+<div class="card" id="loginAdmin"><h3>ZONE DIRECTION - Pour toi seul</h3><p class="small">Entrez votre code Direction</p><input id="codeAdmin" placeholder="Code Direction" type="password"><button class="b-admin" style="width:100%" onclick="login()">Entrer</button><div id="msgCodeDirection" class="small" style="margin-top:8px;color:#dc2626;font-weight:700"></div></div>
+<div id="panelAdmin" class="hidden">
+<div class="card"><h3>Demandes Professionnels</h3><div class="counts" id="counts"></div><div id="listeAgents"></div><button class="b-admin" onclick="ajouterAgentManuel()">+ Ajouter professionnel manuel</button></div>
+<div class="card"><h3>Ajouter professionnel (visible Client)</h3><input id="pPrenom" placeholder="Prénom / Nom"><input id="pMetier" placeholder="Métier"><select id="pQuartier"></select><input id="pPrix" type="number" placeholder="Prix à partir de (DH)" value="200"><button class="b-client" style="width:100%" onclick="ajouter()">Ajouter professionnel</button></div>
+<div class="card"><h3>Activités</h3><div id="acts"></div><button class="b-client" onclick="ajouterAct()">+ Ajouter activité</button></div>
+<div class="card"><h3>Quartiers</h3><p class="small">Ajoutez ou supprimez un quartier. Cela met à jour la Zone Client et le formulaire ci-dessus.</p><div id="listeQuartiersDirection"></div><input id="newQuartier" placeholder="Nouveau quartier ex : Sidi Bernoussi"><button class="b-client" style="width:100%" onclick="ajouterQuartier()">Ajouter quartier</button></div>
+</div></div>
+</div>
+<div class="wrap" style="text-align:center"><button id="btnInstaller" class="b-client" style="display:none;width:100%;padding:16px;font-size:16px" onclick="installerApp()">📲 Installer l'application</button><p class="small">Si le bouton n'apparaît pas : Chrome → ⋮ → Installer l'application / Ajouter à l'écran d'accueil.</p></div>
+<script>
+let quartiers=JSON.parse(localStorage.getItem("quartiers_casa")||'["Maarif","Anfa","Ain Sebaa","Hay Hassani","Mohammedia","Casablanca"]');
+function saveQuartiers(){localStorage.setItem("quartiers_casa",JSON.stringify(quartiers));}
+let qSel="Tous";
+let pros=JSON.parse(localStorage.getItem("pros_casa")||"[]");
+if(pros.length===0){pros=[{n:"Ahmed El Fassi",m:"Plombier",q:"Maarif",note:4.9,prix:200},{n:"Imane",m:"Femme de ménage",q:"Anfa",note:5.0,prix:150},{n:"Youssef",m:"Électricien",q:"Ain Sebaa",note:4.8,prix:180}];localStorage.setItem("pros_casa",JSON.stringify(pros));}
+let agents=JSON.parse(localStorage.getItem("agents_casa")||"[]");
+if(agents.length===0){agents=[{nom:"Ahmed El Fassi",metier:"Plombier",code:"",statut:"non",date:""},{nom:"Imane",metier:"Femme de ménage",code:"",statut:"non",date:""}];localStorage.setItem("agents_casa",JSON.stringify(agents));}
+function saveAgents(){localStorage.setItem("agents_casa",JSON.stringify(agents));}
+async function verifierCodeSurServeur(type,code){
+  try{
+    let r=await fetch("/api/verify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({type,code})});
+    let j=await r.json(); return !!j.ok;
+  }catch(e){ return false; }
+}
+function show(mode){["plate","client","presta","admin"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!==mode));document.getElementById("modeLabel").textContent="Vous êtes sur : "+(mode==="plate"?"PLATEFORME":mode==="client"?"ZONE CLIENT":mode==="presta"?"ZONE PROFESSIONNEL":"ZONE DIRECTION");if(mode!=="presta"){let la=document.getElementById("loginAgent");let pa=document.getElementById("panelAgent");if(la&&pa){la.classList.remove("hidden");pa.classList.add("hidden");let inp=document.getElementById("codeAgentInput");if(inp) inp.value="";let m=document.getElementById("msgCodeIncorrect");if(m) m.innerHTML="";}}}
+function render(){
+  let q=document.getElementById("q").value.toLowerCase();
+  document.getElementById("quartiersPlate").textContent=quartiers.join(", ");
+  document.getElementById("quartiers").innerHTML=["Tous",...quartiers].map(x=>`<span class="pill ${x===qSel?"on":""}" onclick="qSel='${x}';render()">${x}</span>`).join("");
+  let list=pros.filter(p=>(qSel==="Tous"||p.q===qSel)&&((p.n+p.m+p.q).toLowerCase().includes(q)));
+  document.getElementById("liste").innerHTML=list.map(p=>`<div class="card"><b>${p.n}</b> - ${p.m} - ${p.q} - ⭐ ${p.note}<br>À partir de ${p.prix} DH<a class="wa" href="https://wa.me/212701295878?text=${encodeURIComponent("Bonjour "+p.n+", je veux "+p.m)}">WhatsApp</a></div>`).join("")||"<div class='card'>Aucun professionnel pour ce filtre.</div>";
+}
+async function loginAgent(){
+  let code=document.getElementById("codeAgentInput").value.trim();
+  let msg=document.getElementById("msgCodeIncorrect");
+  let ok=await verifierCodeSurServeur("agent",code);
+  if(ok){msg.innerHTML="";document.getElementById("loginAgent").classList.add("hidden");document.getElementById("panelAgent").classList.remove("hidden");}
+  else{msg.innerHTML="❌ Code Professionnel incorrect.";alert("Code Professionnel incorrect.");}
+}
+async function login(){
+  let code=document.getElementById("codeAdmin").value.trim();
+  let msg=document.getElementById("msgCodeDirection");
+  let ok=await verifierCodeSurServeur("direction",code);
+  if(ok){msg.innerHTML="";document.getElementById("loginAdmin").classList.add("hidden");document.getElementById("panelAdmin").classList.remove("hidden");renderAgents();renderQuartiersDirection();remplirSelectQuartiers();}
+  else{msg.innerHTML="❌ Code Direction incorrect.";alert("Code Direction incorrect.");}
+}
+function ajouter(){let n=document.getElementById("pPrenom").value,m=document.getElementById("pMetier").value,q=document.getElementById("pQuartier").value,p=Number(document.getElementById("pPrix").value||200);if(!n||!m) return alert("Mets prénom et métier");pros.push({n,m,q,note:5.0,prix:p});localStorage.setItem("pros_casa",JSON.stringify(pros));render();alert("Professionnel ajouté !");}
+let acts=["Plomberie","Électricité","Ménage"];
+function renderActs(){document.getElementById("acts").innerHTML=acts.map((a,i)=>`<input value="${a}" onchange="acts[${i}]=this.value">`).join("");}
+function ajouterAct(){acts.push("");renderActs();}
+function renderQuartiersDirection(){document.getElementById("listeQuartiersDirection").innerHTML=quartiers.map((qq,i)=>`<div class="qrow"><b>${qq}</b><button class="del" onclick="supprimerQuartier(${i})">✕ Supprimer</button></div>`).join("");}
+function remplirSelectQuartiers(){document.getElementById("pQuartier").innerHTML=quartiers.map(qq=>`<option>${qq}</option>`).join("");}
+function ajouterQuartier(){let v=document.getElementById("newQuartier").value.trim();if(!v) return alert("Écris un quartier");if(quartiers.includes(v)) return alert("Ce quartier existe déjà");quartiers.push(v);saveQuartiers();document.getElementById("newQuartier").value="";render();renderQuartiersDirection();remplirSelectQuartiers();alert("Quartier ajouté : "+v);}
+function supprimerQuartier(i){if(!confirm("Supprimer "+quartiers[i]+" ?")) return;quartiers.splice(i,1);saveQuartiers();if(qSel!=="Tous"&&!quartiers.includes(qSel)) qSel="Tous";render();renderQuartiersDirection();remplirSelectQuartiers();}
+function renouveler(){
+  let nom=document.getElementById("aNom").value.trim();let code=document.getElementById("aCode").value.trim();let metier=document.getElementById("aMetier").value.trim()||"Professionnel";
+  if(!nom||!code) return alert("Mets ton Nom + ton Code de transaction Cash Plus");
+  let date=new Date().toLocaleString("fr-FR");let ex=agents.find(a=>a.nom.toLowerCase()===nom.toLowerCase());
+  if(ex){ex.code=code;ex.metier=metier;ex.statut="attente";ex.date=date;agents=agents.filter(a=>a!==ex);agents.unshift(ex);}else{agents.unshift({nom,metier,code,statut:"attente",date});}
+  saveAgents();document.getElementById("msgAgent").innerHTML="Merci <b>"+nom+"</b>. Votre code est reçu. Vous êtes maintenant en haut de la liste en attente dans la Direction. La Direction va vérifier ce code dans son compte Cash Plus et activer 30 jours.";
+  document.getElementById("waAgent").href="https://wa.me/212701295878?text="+encodeURIComponent("Bonjour, je suis "+nom+", voici mon code de transaction Cash Plus : "+code+" pour l'abonnement 99 DH");renderAgents();
+}
+function renderAgents(){
+  let att=agents.filter(a=>a.statut==="attente"),act=agents.filter(a=>a.statut==="active"),non=agents.filter(a=>a.statut==="non");
+  document.getElementById("counts").innerHTML=`<span>🟡 En attente : ${att.length}</span><span>🟢 Activés : ${act.length}</span><span>🔴 Non renouvelés : ${non.length}</span>`;
+  let ordered=[...att,...act,...non];
+  if(ordered.length===0){document.getElementById("listeAgents").innerHTML="<p>Aucune demande pour le moment.</p>";return;}
+  document.getElementById("listeAgents").innerHTML=ordered.map(a=>{let realIdx=agents.indexOf(a);let cls=a.statut==="attente"?"attente":a.statut==="active"?"active":"non";let statutTxt=a.statut==="attente"?"🟡 En attente d'activation":a.statut==="active"?"🟢 Activé - 30 jours":"🔴 Non renouvelé - Pas encore renouvelé";let btn=a.statut==="attente"?`<button class="b-client" onclick="activer(${realIdx})">✅ Activer le nouvel abonnement - 30 jours</button>`:(a.statut==="active"?"<span class='badge' style='background:#dcfce7'>✅ Activé</span>":"<span class='small'>En attente de paiement</span>");return `<div class="agent ${cls}"><b>${a.nom}</b> - ${a.metier}<br><span class="small">Code : <b>${a.code||"—"}</b> | ${a.date||""}</span><br><b>${statutTxt}</b><br><div style="margin-top:8px">${btn}</div></div>`;}).join("");
+}
+function activer(i){agents[i].statut="active";let d=new Date();d.setDate(d.getDate()+30);agents[i].date="Activé jusqu'au "+d.toLocaleDateString("fr-FR");saveAgents();renderAgents();alert("Abonnement activé pour "+agents[i].nom+" - 30 jours");}
+function ajouterAgentManuel(){let nom=prompt("Nom complet du professionnel ?");if(!nom) return;let metier=prompt("Métier ?")||"Professionnel";agents.push({nom,metier,code:"",statut:"non",date:""});saveAgents();renderAgents();}
+render();renderActs();renderAgents();renderQuartiersDirection();remplirSelectQuartiers();
+</script>
+<script>
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;let b=document.getElementById('btnInstaller');if(b) b.style.display='block';});
+function installerApp(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;});}else{alert("Sur Chrome : cliquez sur les 3 points ⋮ en haut à droite, puis Installer l'application / Ajouter à l'écran d'accueil.");}}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+</script></body></html>
