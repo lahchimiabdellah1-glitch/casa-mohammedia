@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0f172a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Casa-Mohammedia">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQ2FzYS1Nb2hhbW1lZGlhIFNlcnZpY2VzIiwic2hvcnRfbmFtZSI6IkNhc2EtTW9oYW1tZWRpYSIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwic3RhcnRfdXJsIjoiLiIsImJhY2tncm91bmRfY29sb3IiOiIjZjZmNmY2IiwidGhlbWVfY29sb3IiOiIjMGYxNzJhIn0=">
 <title>Casa-Mohammedia Services</title>
 <style>
 body{font-family:Arial,sans-serif;margin:0;background:#f6f6f6;color:#222}
@@ -7,6 +13,8 @@ header{background:#fff;padding:14px;text-align:center;box-shadow:0 2px 8px #0001
 h1{margin:4px 0;font-size:22px}
 .tabs{display:flex;gap:6px;justify-content:center;padding:10px;flex-wrap:wrap}
 button{border:0;border-radius:999px;padding:12px 16px;font-weight:700;cursor:pointer}
+.appbar{position:sticky;top:0;z-index:10;background:#0f172a;color:#fff;padding:10px;text-align:center;border-radius:0 0 16px 16px}
+.installbar{background:#111827;color:#fff;border-radius:16px;padding:14px;text-align:center}
 .b-plate{background:#0f172a;color:#fff}.b-client{background:#16a34a;color:#fff}.b-presta{background:#f97316;color:#fff}.b-admin{background:#dc2626;color:#fff}
 .wrap{max-width:720px;margin:0 auto;padding:12px}
 .card{background:#fff;border-radius:16px;padding:16px;margin:10px 0;box-shadow:0 2px 10px #0001}
@@ -45,15 +53,18 @@ label{font-weight:700;font-size:14px}
 <button class="b-admin" onclick="show('admin')">ZONE DIRECTION</button>
 </div><div class="wrap">
 <div id="plate" class="hidden">
+<div class="card installbar"><h2 style="margin:0">📱 Casa-Mohammedia — Genre Appli</h2><p class="small" style="color:#d1d5db">Utilisez-la comme une application sur votre téléphone.</p><button id="btnInstall" onclick="installerApp()" style="background:#25D366;color:#fff;width:100%;padding:14px;border-radius:12px;font-weight:800;font-size:16px">📲 Installer l'application sur mon téléphone</button><p class="small" id="msgInstall" style="color:#d1d5db"></p><p class="small" style="color:#d1d5db">Sur iPhone : bouton Partager ⬆️ puis « Sur l'écran d'accueil ». Sur Android : menu ⋮ puis « Installer l'application ».</p></div>
 <div class="card"><h2>Bienvenue sur la Plateforme</h2><p>La plateforme met en relation le <b>client</b> et le <b>professionnel</b> à Casablanca et Mohammedia.</p><p>Client : cherche un professionnel, vois son prix, contacte-le sur WhatsApp ou par téléphone.</p></div>
 <div class="card"><b>Quartiers :</b> <span id="quartiersPlate"></span></div>
-</div>
+<div class="card" style="text-align:center"><h3>Quitter l'application</h3><p class="small">Cliquez ici pour sortir de l'application.</p><button onclick="quitterApp()" style="width:100%;background:#111827;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:800;font-size:16px;cursor:pointer">🚪 Quitter l'application</button></div>
 <div id="client" class="hidden">
-<div class="card"><input id="q" placeholder="Chercher : Plomberie, Électricité, Ménage..." oninput="render()"><div id="quartiers"></div></div>
+<div class="card"><input id="rechercheClient2026" placeholder="Chercher : Plomberie, Électricité, Ménage..." oninput="render()" autocomplete="new-password" autocorrect="off" spellcheck="false" name="recherche-nouvelle-2026"><div id="quartiers"></div></div>
 <div id="liste"></div>
 <div class="disclaimer">⚠️ <b>Important - À lire avant de contacter</b><br><br>Casa-Mohammedia Services est uniquement une plateforme de mise en relation entre le client et le professionnel.<br><br>La Direction <b>n'est pas responsable</b> en cas de conflit, de désaccord, de retard, de mauvaise qualité du travail, de prix non respecté, ou de problème de paiement entre le client et le professionnel.<br><br>Le client et le professionnel doivent se mettre d'accord entre eux, avant de commencer le travail, sur le prix, le délai et les détails du service.<br>En utilisant cette plateforme, vous acceptez que tout accord, paiement ou litige se règle directement entre vous, sans engager la responsabilité de la Direction.<br><br>Seuls les professionnels <b>Activés</b> par la Direction sont affichés ici.</div>
 </div>
 <div id="presta" class="hidden">
+<div class="card" id="loginPro"><h3>ZONE PROFESSIONNEL - Code d'accès</h3><p class="small">Cette zone est réservée aux professionnels. Entrez le code que la Direction vous a donné. Les clients ne peuvent pas y entrer.</p><input id="codePro" placeholder="Code Professionnel" type="password"><button class="b-presta" style="width:100%" onclick="loginPro()">Entrer</button><p class="small" id="msgPro" style="color:#dc2626"></p><p class="small">Demandez le code à la Direction sur WhatsApp.</p></div>
+<div id="panelPro" class="hidden">
 <div class="card"><h3>ZONE PROFESSIONNEL - Inscription</h3>
 <div class="big"><div class="price">Abonnement : 99 DH / mois</div><div style="font-weight:800">Activités illimitées</div>
 <div style="margin-top:14px;font-weight:800">Versez vos 99 DH sur ce compte Cash Plus :</div><div class="cash">0701295878</div>
@@ -72,8 +83,9 @@ label{font-weight:700;font-size:14px}
 <a id="waAgent" class="wa" href="#" target="_blank">Contacter la Direction sur WhatsApp</a>
 <p class="small">Mettez le même nom que vous avez mis chez Cash Plus, pour que la Direction vous reconnaisse. Seule vérification : le code de transaction. Mode MANUEL : vous restez en attente jusqu'à ce que la Direction vérifie votre code et vous active.</p>
 </div></div>
+</div></div>
 <div id="admin" class="hidden">
-<div class="card" id="loginAdmin"><h3>ZONE DIRECTION - Pour toi seul</h3><p class="small">Entrez votre code Direction</p><input id="codeAdmin" placeholder="Code Direction" type="password"><button class="b-admin" style="width:100%" onclick="login()">Entrer</button><p class="small">Démo : entrez n'importe quel code pour ouvrir (à remplacer par votre vrai code serveur).</p></div>
+<div class="card" id="loginAdmin"><h3>ZONE DIRECTION - Pour toi seul</h3><p class="small">Entrez votre code Direction</p><input id="codeAdmin" placeholder="Code Direction" type="password"><button class="b-admin" style="width:100%" onclick="login()">Entrer</button><p class="small">Seul le Directeur connaît ce code.</p></div>
 <div id="panelAdmin" class="hidden">
 <div class="card modebox"><b>⚙️ Mode d'activation</b><br>
 <label class="check"><input type="radio" name="mode" value="manuel" checked onchange="setMode('manuel')"> 🔒 MANUEL (recommandé, plus sûr) - Tu vérifies le code dans Cash Plus, puis tu actives.</label>
@@ -84,7 +96,7 @@ label{font-weight:700;font-size:14px}
 2. Cherche le code que le pro a entré<br>
 3. Vérifie : <b>Montant = 99 DH ? Date = aujourd'hui / récente ? Nom de l'envoyeur = Nom du pro ?</b><br>
 4. Si montant ≠ 99 DH, ou date vieille, ou nom différent → c'est un code pour un autre service ou périmé / faux → clique sur <b>Refuser / Supprimer</b>.</div>
-<div class="card"><h3>Professionnels / Demandes</h3><div class="counts" id="counts"></div><div id="listeAgents"></div></div>
+<div class="card"><h3>Professionnels / Demandes</h3><button class="b-client" onclick="reparerSync()">🔄 Réparer / Synchroniser - Si un pro Activé ne s'affiche pas en Zone Client, clique ici</button><div class="counts" id="counts"></div><div id="listeAgents"></div></div>
 <div class="card"><h3>➕ Ajouter un professionnel manuellement (par le Directeur)</h3>
 <p class="small"><b>Ajout Directeur : manuel, sans code Cash Plus. Le professionnel est activé directement.</b></p>
 <label>Prénom / Nom *</label><input id="pPrenom" placeholder="Ex: Karim">
@@ -112,17 +124,21 @@ let agents = JSON.parse(localStorage.getItem("agents_casa")||'[]');
 if(agents.length===0){agents=pros.map(p=>({nom:p.n,metier:p.m,code:p.code,statut:p.statut,date:p.date,wa:p.wa,tel:p.tel,quartier:p.q,prix:p.prix})); saveAgents();}
 let mode = localStorage.getItem("mode_casa")||"manuel";
 let qSel="Tous";
+window.addEventListener("load",()=>{let clearQ=()=>{let qi=document.getElementById("rechercheClient2026"); if(qi){qi.value=""; qi.setAttribute("autocomplete","new-password");}}; clearQ(); setTimeout(clearQ,300); setTimeout(clearQ,800); qSel="Tous"; render();});
 function savePros(){localStorage.setItem("pros_casa",JSON.stringify(pros));}
 function saveAgents(){localStorage.setItem("agents_casa",JSON.stringify(agents));}
 function saveQuartiers(){localStorage.setItem("quartiers_casa",JSON.stringify(quartiers));}
 function cleanNum(n){return (n||"").replace(/\s+/g,"").replace(/^\+212/,"").replace(/^212/,"").replace(/^0/,"");}
 function waLink(wa,nom,metier){return "https://wa.me/212"+cleanNum(wa||"701295878")+"?text="+encodeURIComponent("Bonjour "+nom+", je veux "+metier);}
 function telLink(tel){return "tel:+212"+cleanNum(tel||"701295878");}
-function show(id){["plate","client","presta","admin"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden");}
+let deferredPrompt=null; window.addEventListener("beforeinstallprompt",(e)=>{e.preventDefault(); deferredPrompt=e; let b=document.getElementById("btnInstall"); if(b) b.textContent="📲 Installer l'application - Cliquez ici";});
+function installerApp(){ if(deferredPrompt){deferredPrompt.prompt(); deferredPrompt.userChoice.then((r)=>{document.getElementById("msgInstall").textContent = r.outcome==="accepted" ? "✅ Application installée ! Cherchez l'icône Casa-Mohammedia sur votre écran d'accueil." : "Vous pouvez aussi l'installer plus tard depuis le menu de votre navigateur."; deferredPrompt=null;});} else {document.getElementById("msgInstall").textContent="Sur iPhone : Partager ⬆️ → Sur l'écran d'accueil. Sur Android : menu ⋮ → Installer l'application / Ajouter à l'écran d'accueil.";}}
+function quitterApp(){ if(confirm("Voulez-vous vraiment quitter Casa-Mohammedia Services ?")){ try{window.open("","_self"); window.close();}catch(e){} setTimeout(()=>{ document.body.innerHTML='<div style="font-family:sans-serif;text-align:center;padding:60px 20px"><h1>Casa-Mohammedia Services</h1><p style="font-size:18px">Merci, à bientôt ! 👋</p><p>Vous avez quitté l\'application. Vous pouvez fermer cet onglet.</p><button onclick="window.close()" style="padding:12px 20px;border-radius:10px;background:#111827;color:#fff;border:none;font-weight:800;cursor:pointer">Fermer l\'onglet</button></div>'; },300); } }
+function show(id){["plate","client","presta","admin"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden"); if(id==="client"){let qi=document.getElementById("rechercheClient2026"); if(qi) qi.value=""; qSel="Tous"; render();}}
 function render(){
  document.getElementById("quartiersPlate").textContent=quartiers.join(", ");
  document.getElementById("quartiers").innerHTML=["Tous",...quartiers].map(x=>`<span class="pill ${x===qSel?"on":""}" onclick="qSel='${x}';render()">${x}</span>`).join("");
- let q=(document.getElementById("q")?.value||"").toLowerCase();
+ let q=(document.getElementById("rechercheClient2026")?.value||"").toLowerCase();
  // SEULS les Activés s'affichent en Zone Client
  let list=pros.filter(p=>p.statut==="active"&&(qSel==="Tous"||p.q===qSel)&&((p.n+p.m+p.q).toLowerCase().includes(q)));
  document.getElementById("liste").innerHTML=list.map(p=>`<div class="card"><b>${p.n}</b> - ${p.m} - ${p.q} - ⭐ ${p.note}<br>À partir de ${p.prix} DH<br><div class="row2"><a class="wa" href="${waLink(p.wa,p.n,p.m)}" target="_blank">💬 WhatsApp</a><a class="btn-call" href="${telLink(p.tel)}">📞 ${p.tel||p.wa}<br><span style="font-size:12px;font-weight:400">Appeler</span></a></div></div>`).join("")||"<div class='card'>Aucun professionnel activé pour ce filtre.</div>";
@@ -132,7 +148,8 @@ function render(){
  if(document.getElementById("pQuartier")) document.getElementById("pQuartier").innerHTML=opts;
  renderAgents(); renderQuartiersDirection();
 }
-function login(){document.getElementById("loginAdmin").classList.add("hidden");document.getElementById("panelAdmin").classList.remove("hidden");renderAgents();renderQuartiersDirection();}
+function loginPro(){let c=document.getElementById("codePro").value.trim().replace(/[\u0660-\u0669\u06F0-\u06F9]/g,d=>String("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹".indexOf(d)%10)); if(c==="2026"){document.getElementById("loginPro").classList.add("hidden"); document.getElementById("panelPro").classList.remove("hidden");} else {document.getElementById("msgPro").textContent="❌ Code incorrect. Demandez le code à la Direction.";}}
+function login(){let c=document.getElementById("codeAdmin").value.trim().replace(/[\u0660-\u0669\u06F0-\u06F9]/g,d=>String("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹".indexOf(d)%10)); if(c==="2026"){document.getElementById("loginAdmin").classList.add("hidden"); document.getElementById("panelAdmin").classList.remove("hidden");renderAgents();renderQuartiersDirection();} else {let m=document.getElementById("msgAdmin"); if(!m){let el=document.getElementById("loginAdmin"); let pp=document.createElement("p"); pp.id="msgAdmin"; pp.style.color="#dc2626"; el.appendChild(pp); m=pp;} m.textContent="❌ Code Direction incorrect.";}}
 function setMode(m){mode=m;localStorage.setItem("mode_casa",m);document.getElementById("modeLabel2").textContent=m==="manuel"?"MANUEL":"AUTOMATIQUE";document.querySelectorAll('input[name="mode"]').forEach(r=>r.checked=(r.value===m));}
 function renouveler(){
  let nom=document.getElementById("aNom").value.trim(), metier=document.getElementById("aMetier").value.trim()||"Professionnel", code=document.getElementById("aCode").value.trim(), wa=document.getElementById("aWA").value.trim(), tel=document.getElementById("aTel").value.trim(), q=document.getElementById("aQuartier").value, prix=Number(document.getElementById("aPrix").value||200);
@@ -180,8 +197,19 @@ function setStatut(i,s){
  agents[i].statut=s;
  if(s==="active"){let d=new Date(); d.setDate(d.getDate()+30); agents[i].date="Activé jusqu'au "+d.toLocaleDateString("fr-FR");}
  let p=pros.find(x=>x.n.toLowerCase()===agents[i].nom.toLowerCase());
- if(p){p.statut=s; if(s==="active") p.date=agents[i].date;}
+ if(p){p.statut=s; if(s==="active") p.date=agents[i].date; p.wa=agents[i].wa; p.tel=agents[i].tel;}
+ else {pros.unshift({n:agents[i].nom,m:agents[i].metier,q:agents[i].quartier||"Maarif",note:5,prix:agents[i].prix||200,wa:agents[i].wa,tel:agents[i].tel,statut:s,code:agents[i].code,date:agents[i].date});}
  saveAgents(); savePros(); render();
+}
+function reparerSync(){
+ // Recrée la liste pros depuis agents pour réparer la désynchronisation (Ahmed/Imane activés mais invisibles)
+ agents.forEach(a=>{
+   let p=pros.find(x=>x.n.toLowerCase()===a.nom.toLowerCase());
+   if(p){p.statut=a.statut; p.wa=a.wa; p.tel=a.tel; p.q=a.quartier||p.q; p.prix=a.prix||p.prix;}
+   else {pros.unshift({n:a.nom,m:a.metier,q:a.quartier||"Maarif",note:5,prix:a.prix||200,wa:a.wa,tel:a.tel,statut:a.statut,code:a.code,date:a.date});}
+ });
+ // Si pros est vide mais agents ne l'est pas, on a déjà réparé. Si les 2 sont vides, on remet les démos.
+ saveAgents(); savePros(); render(); alert("Synchronisation faite ! Les professionnels Activés doivent maintenant apparaître dans la Zone Client. Clique sur 'Tous' en haut de la Zone Client.");
 }
 function supprimerAgent(i){
  let nom=agents[i].nom;
