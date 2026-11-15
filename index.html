@@ -170,6 +170,7 @@ function renderAgents(){
   <button class="btn-att" onclick="setStatut(${realIdx},'attente')">⏸️ En attente</button>
   <button class="btn-non" onclick="setStatut(${realIdx},'non')">🔴 Non renouvelé</button>
   <button class="btn-del" onclick="supprimerAgent(${realIdx})">🗑️ Supprimer</button>
+	  <button class="btn-non" onclick="modifierAgent(${realIdx})">✏️ Modifier</button>
   </div></div>`;
  }).join("");
 }
@@ -186,6 +187,19 @@ function supprimerAgent(i){
  agents.splice(i,1);
  pros=pros.filter(p=>p.n.toLowerCase()!==nom.toLowerCase());
  saveAgents(); savePros(); render();
+}
+function modifierAgent(i){
+  let a=agents[i];
+  let nouveauWA=prompt("Nouveau numéro WhatsApp :", a.wa||"");
+  if(nouveauWA===null) return;
+  let nouveauTel=prompt("Nouveau numéro Téléphone :", a.tel||"");
+  if(nouveauTel===null) return;
+  nouveauWA=nouveauWA.trim(); nouveauTel=nouveauTel.trim();
+  if(!nouveauWA||!nouveauTel) return alert("Mets WhatsApp + Téléphone");
+  a.wa=nouveauWA; a.tel=nouveauTel;
+  let pr=pros.find(x=>x.n.toLowerCase()===a.nom.toLowerCase());
+  if(pr){pr.wa=nouveauWA; pr.tel=nouveauTel;}
+  saveAgents(); savePros(); render(); alert("Numéros mis à jour !");
 }
 function ajouter(){
  let n=document.getElementById("pPrenom").value.trim(), m=document.getElementById("pMetier").value.trim(), q=document.getElementById("pQuartier").value, p=Number(document.getElementById("pPrix").value||200), wa=document.getElementById("pWA").value.trim(), tel=document.getElementById("pTel").value.trim();
