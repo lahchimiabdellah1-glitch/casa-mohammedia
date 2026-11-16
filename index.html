@@ -72,14 +72,14 @@ label{font-weight:700;font-size:14px}
 <div style="margin-top:14px;font-weight:800">Versez vos 99 DH sur ce compte Cash Plus :</div><div class="cash">0701295878</div>
 <p class="small">Allez chez Cash Plus ou dans votre application Cash Plus, envoyez 99 DH à ce numéro, gardez le code de transaction, puis entrez-le ci-dessous.</p>
 <p class="small"><b>Étape 1 :</b> Payez 99 DH sur le compte 0701295878<br><b>Étape 2 :</b> Gardez le code de transaction sur votre reçu<br><b>Étape 3 :</b> Entrez votre Nom + Code ci-dessous.</p></div>
-<label>Nom complet *</label><input id="aNom" placeholder="Ex: Ahmed El Fassi">
-<label>Métier *</label><input id="aMetier" placeholder="Ex: Plombier">
+<label>Nom complet *</label><input id="aNom" placeholder="">
+<label>Métier *</label><input id="aMetier" placeholder="">
 <label>Quartier</label><select id="aQuartier"></select>
-<label>Prix à partir de (DH)</label><input id="aPrix" type="number" value="200">
-<label>Numéro WhatsApp *</label><input id="aWA" placeholder="Ex: 0612345678" type="tel">
-<label>Numéro Téléphone *</label><input id="aTel" placeholder="Ex: 0612345678" type="tel">
+<label>Prix à partir de (DH)</label><input id="aPrix" type="number" placeholder="">
+<label>Numéro WhatsApp *</label><input id="aWA" placeholder="" type="tel">
+<label>Numéro Téléphone *</label><input id="aTel" placeholder="" type="tel">
 <label class="check"><input type="checkbox" id="aSame" onchange="if(this.checked){document.getElementById('aTel').value=document.getElementById('aWA').value}"> Même numéro que WhatsApp</label>
-<label>Code de transaction Cash Plus *</label><input id="aCode" placeholder="Ex: 8XK4P9 - code sur votre reçu Cash Plus">
+<label>Code de transaction Cash Plus *</label><input id="aCode" placeholder="">
 <button class="b-presta" style="width:100%" onclick="renouveler()">Envoyer ma demande - En attente de vérification</button>
 <div id="msgAgent" class="small" style="margin-top:8px"></div>
 <a id="waAgent" class="wa" href="#" target="_blank">Contacter la Direction sur WhatsApp</a>
