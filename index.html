@@ -44,7 +44,8 @@ input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;ma
 label{font-weight:700;font-size:14px}
 .check{display:flex;gap:8px;align-items:center;font-weight:400}
 .check input{width:auto}
-</style></head><body>
+.code-input{-webkit-text-security:disc;text-security:disc;letter-spacing:2px;font-size:18px}
+</style></head><body><div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true"><input type="text" name="fake-username" tabindex="-1" autocomplete="off"><input type="password" name="fake-password" tabindex="-1" autocomplete="off"></div>
 <header><h1>Casa-Mohammedia Services</h1><div class="muted">Trouvez quelqu'un de confiance, aujourd'hui.</div><div class="muted">Vous êtes sur : ZONE DIRECTION</div></header>
 <div class="tabs">
 <button class="b-plate" onclick="show('plate')">PLATEFORME</button>
@@ -64,7 +65,7 @@ label{font-weight:700;font-size:14px}
 <div class="disclaimer">⚠️ <b>Important - À lire avant de contacter</b><br><br>Casa-Mohammedia Services est uniquement une plateforme de mise en relation entre le client et le professionnel.<br><br>La Direction <b>n'est pas responsable</b> en cas de conflit, de désaccord, de retard, de mauvaise qualité du travail, de prix non respecté, ou de problème de paiement entre le client et le professionnel.<br><br>Le client et le professionnel doivent se mettre d'accord entre eux, avant de commencer le travail, sur le prix, le délai et les détails du service.<br>En utilisant cette plateforme, vous acceptez que tout accord, paiement ou litige se règle directement entre vous, sans engager la responsabilité de la Direction.<br><br>Seuls les professionnels <b>Activés</b> par la Direction sont affichés ici.</div>
 </div>
 <div id="presta" class="hidden">
-<div class="card" id="loginPro"><h3>ZONE PROFESSIONNEL - Code d'accès</h3><p class="small">Cette zone est réservée aux professionnels. Entrez le code que la Direction vous a donné. Les clients ne peuvent pas y entrer.</p><input id="codePro" placeholder="Code Professionnel" type="password"><button class="b-presta" style="width:100%" onclick="loginPro()">Entrer</button><p class="small" id="msgPro" style="color:#dc2626"></p><p class="small">Demandez le code à la Direction sur WhatsApp.</p></div>
+<div class="card" id="loginPro"><h3>ZONE PROFESSIONNEL - Code d'accès</h3><p class="small">Cette zone est réservée aux professionnels. Entrez le code que la Direction vous a donné. Les clients ne peuvent pas y entrer.</p><input id="codePro" placeholder="Code Professionnel" type="text" inputmode="numeric" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" name="code-pro-unique-casa" class="code-input"><button class="b-presta" style="width:100%" onclick="loginPro()">Entrer</button><p class="small" id="msgPro" style="color:#dc2626"></p><p class="small">Demandez le code à la Direction sur WhatsApp.</p></div>
 <div id="panelPro" class="hidden">
 <div class="card"><h3>ZONE PROFESSIONNEL - Inscription</h3>
 <div class="big"><div class="price">Abonnement : 99 DH / mois</div><div style="font-weight:800">Activités illimitées</div>
@@ -86,7 +87,7 @@ label{font-weight:700;font-size:14px}
 </div></div>
 </div></div>
 <div id="admin" class="hidden">
-<div class="card" id="loginAdmin"><h3>ZONE DIRECTION - Pour toi seul</h3><p class="small">Entrez votre code Direction</p><input id="codeAdmin" placeholder="Code Direction" type="password"><button class="b-admin" style="width:100%" onclick="login()">Entrer</button><p class="small">Seul le Directeur connaît ce code.</p></div>
+<div class="card" id="loginAdmin"><h3>ZONE DIRECTION - Pour toi seul</h3><p class="small">Entrez votre code Direction</p><input id="codeAdmin" placeholder="Code Direction" type="text" inputmode="numeric" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" name="code-direction-unique-casa" class="code-input"><button class="b-admin" style="width:100%" onclick="login()">Entrer</button><p class="small">Seul le Directeur connaît ce code.</p></div>
 <div id="panelAdmin" class="hidden">
 <div class="card modebox"><b>⚙️ Mode d'activation</b><br>
 <label class="check"><input type="radio" name="mode" value="manuel" checked onchange="setMode('manuel')"> 🔒 MANUEL (recommandé, plus sûr) - Tu vérifies le code dans Cash Plus, puis tu actives.</label>
@@ -245,5 +246,6 @@ function ajouterAct(){acts.push("");renderActs();}
 function renderQuartiersDirection(){let el=document.getElementById("listeQuartiersDirection"); if(el) el.innerHTML=quartiers.map((qq,i)=>`<div class="qrow"><b>${qq}</b><button class="del" onclick="supprimerQuartier(${i})">✕ Supprimer</button></div>`).join("");}
 function ajouterQuartier(){let v=document.getElementById("newQuartier").value.trim();if(!v) return alert("Écris un quartier");if(quartiers.includes(v)) return alert("Ce quartier existe déjà");quartiers.push(v);saveQuartiers();document.getElementById("newQuartier").value="";render();}
 function supprimerQuartier(i){if(!confirm("Supprimer "+quartiers[i]+" ?")) return;quartiers.splice(i,1);saveQuartiers();if(qSel!=="Tous"&&!quartiers.includes(qSel)) qSel="Tous";render();}
+['codePro','codeAdmin'].forEach(function(id){var el=document.getElementById(id); if(el){el.addEventListener('focus',function(){this.setAttribute('autocomplete','new-password');});}});
 setMode(mode); render(); renderActs(); show('plate');
 </script></body></html>
