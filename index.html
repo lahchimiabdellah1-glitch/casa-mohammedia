@@ -64,12 +64,7 @@ label{font-weight:700;font-size:14px}
 .rate-box{background:#fffbeb;border:2px solid #facc15;border-radius:12px;padding:10px;margin-top:10px}
 .vote-done{background:#f0fdf4;border:2px solid #16a34a;border-radius:10px;padding:8px;margin-top:8px;font-weight:700;color:#166534}
 .code-box{caret-color:#111} .code-input{-webkit-text-security:disc;text-security:disc;letter-spacing:2px;font-size:18px}
-</style>
-<style>
-input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus { -webkit-text-fill-color:#222 !important; -webkit-box-shadow:0 0 0 1000px #fff inset !important; transition:background-color 9999s ease-in-out 0s; }
-.code-box{ -webkit-text-security:disc !important; text-security:disc !important; }
-</style>
-</head><body>
+</style></head><body>
 <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden">Casa-Mohammedia Services - Prestataires à Casablanca et Mohammedia. Ménage, plomberie, électricité, peinture, jardinage, déménagement, réparation à domicile à Casablanca et Mohammedia au Maroc. Trouvez un artisan de confiance et demandez un devis rapide sur WhatsApp.</div>
 <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true"><input type="text" name="fake-username" tabindex="-1" autocomplete="off"><input type="password" name="fake-password" tabindex="-1" autocomplete="off"></div>
 <header><h1>Casa-Mohammedia Services</h1><div class="muted">Trouvez quelqu'un de confiance, aujourd'hui.</div><div class="muted">Vous êtes sur : ZONE DIRECTION</div></header>
@@ -83,7 +78,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 <div class="card installbar"><h2 style="margin:0">📱 Casa-Mohammedia — Genre Appli</h2><p class="small" style="color:#d1d5db">Utilisez-la comme une application sur votre téléphone.</p><button id="btnInstall" onclick="installerApp()" style="background:#25D366;color:#fff;width:100%;padding:14px;border-radius:12px;font-weight:800;font-size:16px">📲 Installer l'application sur mon téléphone</button><p class="small" id="msgInstall" style="color:#d1d5db"></p><p class="small" style="color:#d1d5db">Sur iPhone : bouton Partager ⬆️ puis « Sur l'écran d'accueil ». Sur Android : menu ⋮ puis « Installer l'application ».</p></div>
 <div class="card"><h2>Bienvenue sur la Plateforme</h2><p>La plateforme met en relation le <b>client</b> et le <b>professionnel</b> à Casablanca et Mohammedia.</p><p>Client : cherche un professionnel, vois son prix, contacte-le sur WhatsApp ou par téléphone.</p></div>
 <div class="card"><b>Quartiers :</b> <span id="quartiersPlate"></span></div>
-<div class="card" style="text-align:center"><h3>Quitter l'application</h3><p class="small">Cliquez ici pour sortir de l'application.</p><button id="btnQuitter" onclick="quitterApp(this)" style="width:100%;background:#111827;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:800;font-size:16px;cursor:pointer">🚪 Quitter l'application</button></div>
+<div class="card" style="text-align:center"><h3>Quitter l'application</h3><p class="small">Cliquez ici pour sortir de l'application.</p><button onclick="quitterApp()" style="width:100%;background:#111827;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:800;font-size:16px;cursor:pointer">🚪 Quitter l'application</button></div>
 </div>
 <div id="client" class="hidden">
 <div class="card"><input id="rechercheClient2026" placeholder="Chercher : Plomberie, Électricité, Ménage..." oninput="render()" autocomplete="new-password" autocorrect="off" spellcheck="false" name="recherche-nouvelle-2026"><div id="quartiers"></div></div>
@@ -91,7 +86,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 <div class="disclaimer">⚠️ <b>Important - À lire avant de contacter</b><br><br>Casa-Mohammedia Services est uniquement une plateforme de mise en relation entre le client et le professionnel.<br><br>La Direction <b>n'est pas responsable</b> en cas de conflit, de désaccord, de retard, de mauvaise qualité du travail, de prix non respecté, ou de problème de paiement entre le client et le professionnel.<br><br>Le client et le professionnel doivent se mettre d'accord entre eux, avant de commencer le travail, sur le prix, le délai et les détails du service.<br>En utilisant cette plateforme, vous acceptez que tout accord, paiement ou litige se règle directement entre vous, sans engager la responsabilité de la Direction.<br><br>Seuls les professionnels <b>Activés</b> par la Direction sont affichés ici.</div>
 </div>
 <div id="presta" class="hidden">
-<div class="card" id="loginPro"><h3>ZONE PROFESSIONNEL - Code d'accès</h3><p class="small">Cette zone est réservée aux professionnels. Entrez le code que la Direction vous a donné. Les clients ne peuvent pas y entrer.</p><div style="display:flex;gap:8px;justify-content:center" id="codeProBoxes"><input class="code-input code-box" data-pro-box type="text" inputmode="numeric" maxlength="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0;-webkit-text-security:disc;text-security:disc" oninput="avancerCase(this,'codeProBoxes')" onkeydown="reculerCase(event,this,'codeProBoxes')"><input class="code-input code-box" data-pro-box type="text" inputmode="numeric" maxlength="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0;-webkit-text-security:disc;text-security:disc" oninput="avancerCase(this,'codeProBoxes')" onkeydown="reculerCase(event,this,'codeProBoxes')"><input class="code-input code-box" data-pro-box type="text" inputmode="numeric" maxlength="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0;-webkit-text-security:disc;text-security:disc" oninput="avancerCase(this,'codeProBoxes')" onkeydown="reculerCase(event,this,'codeProBoxes')"><input class="code-input code-box" data-pro-box type="text" inputmode="numeric" maxlength="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0;-webkit-text-security:disc;text-security:disc" oninput="avancerCase(this,'codeProBoxes')" onkeydown="reculerCase(event,this,'codeProBoxes')"></div><input id="codePro" type="hidden" autocomplete="off"><button class="b-presta" style="width:100%" onclick="loginPro()">Entrer</button><p class="small" id="msgPro" style="color:#dc2626"></p><p class="small">Demandez le code à la Direction sur WhatsApp.</p></div>
+<div class="card" id="loginPro"><h3>ZONE PROFESSIONNEL - Code d'accès</h3><p class="small">Cette zone est réservée aux professionnels. Entrez le code que la Direction vous a donné. Les clients ne peuvent pas y entrer.</p><div style="display:flex;gap:8px;justify-content:center" id="codeProBoxes"><input class="code-input code-box" data-pro-box type="password" inputmode="numeric" maxlength="1" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0" oninput="avancerCase(this,'codeProBoxes')" onkeydown="reculerCase(event,this,'codeProBoxes')"><input class="code-input code-box" data-pro-box type="password" inputmode="numeric" maxlength="1" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0" oninput="avancerCase(this,'codeProBoxes')" onkeydown="reculerCase(event,this,'codeProBoxes')"><input class="code-input code-box" data-pro-box type="password" inputmode="numeric" maxlength="1" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0" oninput="avancerCase(this,'codeProBoxes')" onkeydown="reculerCase(event,this,'codeProBoxes')"><input class="code-input code-box" data-pro-box type="password" inputmode="numeric" maxlength="1" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0" oninput="avancerCase(this,'codeProBoxes')" onkeydown="reculerCase(event,this,'codeProBoxes')"></div><input id="codePro" type="hidden" autocomplete="off"><button class="b-presta" style="width:100%" onclick="loginPro()">Entrer</button><p class="small" id="msgPro" style="color:#dc2626"></p><p class="small">Demandez le code à la Direction sur WhatsApp.</p></div>
 <div id="panelPro" class="hidden">
 <div class="card" style="text-align:center"><button onclick="verrouillerTout();show('plate')" style="width:100%;background:#111827;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800;cursor:pointer">🔒 Verrouiller / Quitter la Zone Professionnel</button><p class="small">En quittant, il faudra re-entrer le code Professionnel.</p></div>
 <div class="card"><h3>ZONE PROFESSIONNEL - Inscription</h3>
@@ -106,7 +101,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 <label>Numéro WhatsApp *</label><input id="aWA" placeholder="" type="tel">
 <label>Numéro Téléphone *</label><input id="aTel" placeholder="" type="tel">
 <label class="check"><input type="checkbox" id="aSame" onchange="if(this.checked){document.getElementById('aTel').value=document.getElementById('aWA').value}"> Même numéro que WhatsApp</label>
-<label>Code de transaction Cash Plus *</label><input id="aCode" placeholder="" type="text" style="-webkit-text-security:disc;text-security:disc" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" >
+<label>Code de transaction Cash Plus *</label><input id="aCode" placeholder="" type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" >
 <button class="b-presta" style="width:100%" onclick="renouveler()">Envoyer ma demande - En attente de vérification</button>
 <div id="msgAgent" class="small" style="margin-top:8px"></div>
 <a id="waAgent" class="wa" href="#" target="_blank">Contacter la Direction sur WhatsApp</a>
@@ -116,7 +111,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 </div></div>
 </div></div>
 <div id="admin" class="hidden">
-<div class="card" id="loginAdmin"><h3>ZONE DIRECTION - Pour toi seul</h3><p class="small">Entrez votre code Direction</p><div style="display:flex;gap:8px;justify-content:center" id="codeAdminBoxes"><input class="code-input code-box" data-admin-box type="text" inputmode="numeric" maxlength="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0;-webkit-text-security:disc;text-security:disc" oninput="avancerCase(this,'codeAdminBoxes')" onkeydown="reculerCase(event,this,'codeAdminBoxes')"><input class="code-input code-box" data-admin-box type="text" inputmode="numeric" maxlength="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0;-webkit-text-security:disc;text-security:disc" oninput="avancerCase(this,'codeAdminBoxes')" onkeydown="reculerCase(event,this,'codeAdminBoxes')"><input class="code-input code-box" data-admin-box type="text" inputmode="numeric" maxlength="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0;-webkit-text-security:disc;text-security:disc" oninput="avancerCase(this,'codeAdminBoxes')" onkeydown="reculerCase(event,this,'codeAdminBoxes')"><input class="code-input code-box" data-admin-box type="text" inputmode="numeric" maxlength="1" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0;-webkit-text-security:disc;text-security:disc" oninput="avancerCase(this,'codeAdminBoxes')" onkeydown="reculerCase(event,this,'codeAdminBoxes')"></div><input id="codeAdmin" type="hidden" autocomplete="off"><button class="b-admin" style="width:100%" onclick="login()">Entrer</button><p class="small">Seul le Directeur connaît ce code.</p></div>
+<div class="card" id="loginAdmin"><h3>ZONE DIRECTION - Pour toi seul</h3><p class="small">Entrez votre code Direction</p><div style="display:flex;gap:8px;justify-content:center" id="codeAdminBoxes"><input class="code-input code-box" data-admin-box type="password" inputmode="numeric" maxlength="1" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0" oninput="avancerCase(this,'codeAdminBoxes')" onkeydown="reculerCase(event,this,'codeAdminBoxes')"><input class="code-input code-box" data-admin-box type="password" inputmode="numeric" maxlength="1" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0" oninput="avancerCase(this,'codeAdminBoxes')" onkeydown="reculerCase(event,this,'codeAdminBoxes')"><input class="code-input code-box" data-admin-box type="password" inputmode="numeric" maxlength="1" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0" oninput="avancerCase(this,'codeAdminBoxes')" onkeydown="reculerCase(event,this,'codeAdminBoxes')"><input class="code-input code-box" data-admin-box type="password" inputmode="numeric" maxlength="1" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:52px;text-align:center;font-size:22px;padding:12px 0" oninput="avancerCase(this,'codeAdminBoxes')" onkeydown="reculerCase(event,this,'codeAdminBoxes')"></div><input id="codeAdmin" type="hidden" autocomplete="off"><button class="b-admin" style="width:100%" onclick="login()">Entrer</button><p class="small">Seul le Directeur connaît ce code.</p></div>
 <div id="panelAdmin" class="hidden">
 <div class="card" style="text-align:center"><button onclick="verrouillerTout();show('plate')" style="width:100%;background:#111827;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800;cursor:pointer">🔒 Verrouiller / Quitter la Zone Direction</button><p class="small">En quittant, il faudra re-entrer le code Direction.</p></div>
 <div class="card" style="border:2px solid #dc2626"><h3>⭐ Contrôle des Étoiles - DIRECTION</h3><p class="small">Les notes ici sont EXACTEMENT les mêmes qu'en ZONE CLIENT (synchronisées). Tu peux CORRIGER une note ou SUPPRIMER un professionnel.</p><button onclick="resetTousLesVotes()" style="background:#111827;color:#fff;width:100%">🔄 Réinitialiser les votes sur CE téléphone (pour tester)</button><p class="small">Les 3 précautions sont ACTIVÉES : 1 vote par téléphone + Confirmation + Suppression par la Direction.</p></div>
@@ -129,7 +124,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 2. Cherche le code que le pro a entré<br>
 3. Vérifie : <b>Montant = 99 DH ? Date = aujourd'hui / récente ? Nom de l'envoyeur = Nom du pro ?</b><br>
 4. Si montant ≠ 99 DH, ou date vieille, ou nom différent → c'est un code pour un autre service ou périmé / faux → clique sur <b>Refuser / Supprimer</b>.</div>
-<div class="card"><h3>Professionnels / Demandes</h3><button class="b-client" onclick="reparerSync()">🔄 Réparer / Synchroniser - Si un pro Activé ne s'affiche pas en Zone Client, clique ici</button><div class="counts" id="counts"></div><div id="msgSupprimer" style="display:none;background:#dcfce7;border:2px solid #16a34a;color:#14532d;padding:12px;border-radius:10px;margin:8px 0;font-weight:800"></div><div id="listeAgents"></div></div>
+<div class="card"><h3>Professionnels / Demandes</h3><button class="b-client" onclick="reparerSync()">🔄 Réparer / Synchroniser - Si un pro Activé ne s'affiche pas en Zone Client, clique ici</button><div class="counts" id="counts"></div><div id="listeAgents"></div></div>
 <div class="card"><h3>➕ Ajouter un professionnel manuellement (par le Directeur)</h3>
 <p class="small"><b>Ajout Directeur : manuel, sans code Cash Plus. Le professionnel est activé directement.</b></p>
 <label>Prénom / Nom *</label><input id="pPrenom" placeholder="Ex: Karim">
@@ -147,50 +142,26 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 <script>
 let quartiers = JSON.parse(localStorage.getItem("quartiers_casa")||'["Maarif","Anfa","Ain Sebaa","Hay Hassani","Mohammedia","Casablanca"]');
 let pros = JSON.parse(localStorage.getItem("pros_casa")||'[]');
-let prosJamaisInit = (localStorage.getItem("pros_casa")===null);
-if(prosJamaisInit && pros.length===0){pros=[
+if(pros.length===0){pros=[
 {n:"Ahmed El Fassi",m:"Plombier",q:"Maarif",note:null,qualite:null,ponctualite:null,nbAvis:0,prix:200,wa:"0701295878",tel:"0701295878",statut:"active",code:"DEMO-1",date:"Activé"},
 {n:"nabil",m:"Plomberie",q:"Maarif",note:5,prix:500,wa:"0701123456",tel:"0701123444",statut:"active",code:"FUSION-1",date:"Activé"},
 {n:"wadia",m:"Ménage",q:"Mohammedia",note:5,prix:100,wa:"+212701295844",tel:"+212701295855",statut:"active",code:"FUSION-2",date:"Activé"},
 {n:"Imane",m:"Femme de ménage",q:"Anfa",note:5,prix:150,wa:"0701295878",tel:"0701295878",statut:"active",code:"DEMO-2",date:"Activé"},
 {n:"Youssef",m:"Électricien",q:"Ain Sebaa",note:null,qualite:null,ponctualite:null,nbAvis:0,prix:180,wa:"0701295878",tel:"0701295878",statut:"active",code:"DEMO-3",date:"Activé"}]; savePros();}
 let agents = JSON.parse(localStorage.getItem("agents_casa")||'[]');
-let agentsJamaisInit = (localStorage.getItem("agents_casa")===null);
-if(agentsJamaisInit && agents.length===0){agents=pros.map(p=>({nom:p.n,metier:p.m,code:p.code,statut:p.statut,date:p.date,wa:p.wa,tel:p.tel,quartier:p.q,prix:p.prix})); saveAgents();}
+if(agents.length===0){agents=pros.map(p=>({nom:p.n,metier:p.m,code:p.code,statut:p.statut,date:p.date,wa:p.wa,tel:p.tel,quartier:p.q,prix:p.prix})); saveAgents();}
 let mode = localStorage.getItem("mode_casa")||"manuel";
 let qSel="Tous";
 window.addEventListener("load",()=>{let clearQ=()=>{let qi=document.getElementById("rechercheClient2026"); if(qi){qi.value=""; qi.setAttribute("autocomplete","new-password");}}; clearQ(); setTimeout(clearQ,300); setTimeout(clearQ,800); qSel="Tous"; render();});
 function savePros(){localStorage.setItem("pros_casa",JSON.stringify(pros));}
 function saveAgents(){localStorage.setItem("agents_casa",JSON.stringify(agents));}
 function saveQuartiers(){localStorage.setItem("quartiers_casa",JSON.stringify(quartiers));}
-function getSupprimes(){ try{ return JSON.parse(localStorage.getItem("supprimes_casa")||"[]"); }catch(e){ return []; } }
-function ajouterSupprime(nom){ try{ var l=getSupprimes(); var k=String(nom).trim().toLowerCase(); if(l.indexOf(k)===-1) l.push(k); localStorage.setItem("supprimes_casa",JSON.stringify(l)); }catch(e){} }
-function estSupprime(nom){ return getSupprimes().indexOf(String(nom).trim().toLowerCase())!==-1; }
-function afficherMsgSupprimer(txt, ok){ var el=document.getElementById("msgSupprimer"); if(!el) return; el.style.display="block"; el.style.background=ok?"#dcfce7":"#fee2e2"; el.style.borderColor=ok?"#16a34a":"#dc2626"; el.style.color=ok?"#14532d":"#7f1d1d"; el.textContent=txt; }
 function cleanNum(n){return (n||"").replace(/\s+/g,"").replace(/^\+212/,"").replace(/^212/,"").replace(/^0/,"");}
 function waLink(wa,nom,metier){return "https://wa.me/212"+cleanNum(wa||"701295878")+"?text="+encodeURIComponent("Bonjour "+nom+", je veux "+metier);}
 function telLink(tel){return "tel:+212"+cleanNum(tel||"701295878");}
 let deferredPrompt=null; window.addEventListener("beforeinstallprompt",(e)=>{e.preventDefault(); deferredPrompt=e; let b=document.getElementById("btnInstall"); if(b) b.textContent="📲 Installer l'application - Cliquez ici";});
 function installerApp(){ if(deferredPrompt){deferredPrompt.prompt(); deferredPrompt.userChoice.then((r)=>{document.getElementById("msgInstall").textContent = r.outcome==="accepted" ? "✅ Application installée ! Cherchez l'icône Casa-Mohammedia sur votre écran d'accueil." : "Vous pouvez aussi l'installer plus tard depuis le menu de votre navigateur."; deferredPrompt=null;});} else {document.getElementById("msgInstall").textContent="Sur iPhone : Partager ⬆️ → Sur l'écran d'accueil. Sur Android : menu ⋮ → Installer l'application / Ajouter à l'écran d'accueil.";}}
-function quitterApp(btn){
-  // ÉTAPE 1 : premier clic = on arme, PAS de confirm() (Chrome peut le bloquer)
-  if(btn && !btn.dataset.arme){
-    btn.dataset.arme="1";
-    btn.style.background="#dc2626";
-    btn.textContent="⚠️ CLIQUE ENCORE pour quitter";
-    setTimeout(function(){ try{ if(btn){ delete btn.dataset.arme; btn.textContent="🚪 Quitter l'application"; btn.style.background="#111827"; } }catch(e){} }, 5000);
-    return;
-  }
-  // ÉTAPE 2 : deuxième clic = on verrouille TOUT et on affiche l'écran de sortie
-  // Chrome interdit à un site de fermer un onglet qu'il n'a pas ouvert, donc on n'utilise plus window.close() comme seule action.
-  // On verrouille les zones (codes à re-entrer) et on montre l'écran "Merci" : l'utilisateur ferme l'onglet avec la croix X.
-  try{ verrouillerTout(); }catch(e){}
-  try{ sessionStorage.removeItem("authAdmin_casa"); sessionStorage.removeItem("authPro_casa"); }catch(e){}
-  try{ window.close(); }catch(e){} // On essaie quand même, si Chrome l'autorise
-  setTimeout(function(){
-    document.body.innerHTML='<div style="font-family:sans-serif;text-align:center;padding:50px 20px;max-width:480px;margin:0 auto"><h1 style="font-size:28px">Casa-Mohammedia Services</h1><p style="font-size:20px">Merci, à bientôt ! 👋</p><p style="font-size:16px;line-height:1.6">Tu as quitté l\'application.<br><b>Zones Direction et Professionnel verrouillées.</b><br>Il faudra re-entrer le code pour y retourner.</p><p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:12px;font-size:15px;line-height:1.6">Pour fermer complètement :<br>clique sur la croix <b>X</b> en haut de cet onglet.<br><span style="color:#64748b">Chrome ne laisse pas un site fermer un onglet lui-même, c\'est normal.</span></p><button onclick="location.reload()" style="padding:14px 22px;border-radius:12px;background:#111827;color:#fff;border:none;font-weight:800;font-size:16px;cursor:pointer;width:100%;margin-top:10px">↩️ Revenir à l\'application</button></div>';
-  }, 300);
-}
+function quitterApp(){ if(confirm("Voulez-vous vraiment quitter Casa-Mohammedia Services ?")){ verrouillerTout(); try{window.open("","_self"); window.close();}catch(e){} setTimeout(()=>{ document.body.innerHTML='<div style="font-family:sans-serif;text-align:center;padding:60px 20px"><h1>Casa-Mohammedia Services</h1><p style="font-size:18px">Merci, à bientôt ! 👋</p><p>Vous avez quitté l\'application. Vous pouvez fermer cet onglet.</p><button onclick="window.close()" style="padding:12px 20px;border-radius:10px;background:#111827;color:#fff;border:none;font-weight:800;cursor:pointer">Fermer l\'onglet</button></div>'; },300); } }
 
 function lireCodeBoxes(containerId){
   var boxes=document.querySelectorAll('#'+containerId+' input.code-box');
@@ -215,38 +186,7 @@ function reculerCase(e,el,containerId){
     if(idx>0){ boxes[idx-1].focus(); boxes[idx-1].value=''; e.preventDefault(); }
   }
 }
-
-function antiAutofillTout(){
-  try{
-    var all=document.querySelectorAll('input, select, textarea');
-    all.forEach(function(el,idx){
-      el.setAttribute('autocomplete','off');
-      el.setAttribute('autocorrect','off');
-      el.setAttribute('autocapitalize','off');
-      el.setAttribute('spellcheck','false');
-      el.setAttribute('data-lpignore','true');
-      el.setAttribute('data-1p-ignore','true');
-      // Nom aléatoire à chaque ouverture : Chrome ne reconnaît plus le champ, donc il ne propose plus nom / 07 / 2026
-      if(el.type!=='hidden' && el.type!=='checkbox' && el.type!=='radio'){
-        el.setAttribute('name','champ-'+Date.now()+'-'+idx+'-'+Math.floor(Math.random()*99999));
-        el.setAttribute('id', el.getAttribute('id')||('champ-'+idx));
-      }
-    });
-    // Les cases code : on leur remet un nom aléatoire aussi, mais on garde leur classe pour les retrouver
-    document.querySelectorAll('#codeProBoxes input.code-box').forEach(function(b,i){ b.setAttribute('name','code-pro-'+Date.now()+'-'+i+'-'+Math.floor(Math.random()*99999)); });
-    document.querySelectorAll('#codeAdminBoxes input.code-box').forEach(function(b,i){ b.setAttribute('name','code-dir-'+Date.now()+'-'+i+'-'+Math.floor(Math.random()*99999)); });
-    // Faux champs pour piéger Chrome (il remplit ceux-là, pas les vrais)
-    if(!document.getElementById('piege-chrome')){
-      var piege=document.createElement('div');
-      piege.id='piege-chrome';
-      piege.style.cssText='position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;opacity:0';
-      piege.innerHTML='<input type="text" name="username" autocomplete="username" tabindex="-1"><input type="password" name="password" autocomplete="current-password" tabindex="-1">';
-      document.body.appendChild(piege);
-    }
-  }catch(e){}
-}
 function verrouillerTout(){
-
 
   try{ sessionStorage.removeItem("authAdmin_casa"); sessionStorage.removeItem("authPro_casa"); }catch(e){}
   var lp=document.getElementById("loginPro"); if(lp) lp.classList.remove("hidden");
@@ -257,7 +197,7 @@ function verrouillerTout(){
   viderCodeBoxes("codeAdminBoxes"); var ca=document.getElementById("codeAdmin"); if(ca) ca.value="";
   var mp=document.getElementById("msgPro"); if(mp) mp.textContent="";
 }
-function show(id){ antiAutofillTout(); ["plate","client","presta","admin"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden");
+function show(id){["plate","client","presta","admin"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden");
   if(id==="presta" && sessionStorage.getItem("authPro_casa")!=="1"){ document.getElementById("panelPro").classList.add("hidden"); document.getElementById("loginPro").classList.remove("hidden"); }
   if(id==="admin" && sessionStorage.getItem("authAdmin_casa")!=="1"){ document.getElementById("panelAdmin").classList.add("hidden"); document.getElementById("loginAdmin").classList.remove("hidden"); }
  try{ syncAvis(); }catch(e){} if(id==="client"){let qi=document.getElementById("rechercheClient2026"); if(qi) qi.value=""; qSel="Tous"; render();} if(id==="admin"){ try{ renderAgents(); }catch(e){} } if(id==="presta"){ try{ render(); }catch(e){} }}
@@ -482,20 +422,11 @@ function resetTousLesVotes(){
 }
 
 function syncAvis(){
-  // Nettoyage : si un supprimé est revenu (ancienne sauvegarde), on l'enlève des 2 listes
-  try{
-    var _sup=getSupprimes();
-    if(_sup.length){
-      agents=agents.filter(function(a){return _sup.indexOf(String(a.nom).trim().toLowerCase())===-1;});
-      pros=pros.filter(function(p){return _sup.indexOf(String(p.n).trim().toLowerCase())===-1;});
-    }
-  }catch(e){}
   // UNE SEULE VÉRITÉ, DANS LES 2 SENS : pros (Client) <-> agents (Direction)
   // 1) Direction -> Client : si un pro existe en Direction mais pas en Client, on le crée en Client
   agents.forEach(function(ag){
     let pr = pros.find(x=>x.n.toLowerCase()===ag.nom.toLowerCase());
-    if(!pr && estSupprime(ag.nom)){ /* supprimé : ne pas recréer */ }
-    else if(!pr){
+    if(!pr){
       pros.unshift({n:ag.nom, m:ag.metier, q:ag.quartier||"Maarif", note:ag.note||5, qualite:ag.qualite!=null?ag.qualite:5, ponctualite:ag.ponctualite!=null?ag.ponctualite:5, nbAvis:ag.nbAvis||0, prix:ag.prix||200, wa:ag.wa, tel:ag.tel, statut:ag.statut, code:ag.code||"", date:ag.date||"", avisVerifie:ag.avisVerifie||false, avisDecision:ag.avisDecision||""});
     } else {
       // Direction est le chef pour le statut : Activer en Direction = visible en Client tout de suite
@@ -515,8 +446,7 @@ function syncAvis(){
   // 2) Client / Zone Pro -> Direction : si un pro existe en Client mais pas en Direction, on le crée en Direction
   pros.forEach(function(pr){
     let ag = agents.find(a=>a.nom.toLowerCase()===pr.n.toLowerCase());
-    if(!ag && estSupprime(pr.n)){ /* supprimé : ne pas recréer */ }
-    else if(!ag){
+    if(!ag){
       agents.unshift({nom:pr.n, metier:pr.m, code:pr.code||"", statut:pr.statut, date:pr.date||"", wa:pr.wa, tel:pr.tel, quartier:pr.q, prix:pr.prix, qualite:pr.qualite, ponctualite:pr.ponctualite, nbAvis:pr.nbAvis, note:pr.note, avisVerifie:pr.avisVerifie, avisDecision:pr.avisDecision});
     } else {
       // Client est le chef pour les notes (votes clients) : on copie vers Direction
@@ -558,8 +488,8 @@ function render(){
  if(document.getElementById("pQuartier")) document.getElementById("pQuartier").innerHTML=opts;
  renderAgents(); renderQuartiersDirection();
 }
-function loginPro(){let c=lireCodeBoxes("codeProBoxes").trim().replace(/[\u0660-\u0669\u06F0-\u06F9]/g,d=>String("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹".indexOf(d)%10)); if(c===String.fromCharCode(51,57,49,53)){sessionStorage.setItem("authPro_casa","1"); viderCodeBoxes("codeProBoxes"); document.getElementById("loginPro").classList.add("hidden"); document.getElementById("panelPro").classList.remove("hidden");} else {document.getElementById("msgPro").textContent="❌ Code incorrect. Demandez le code à la Direction.";}}
-function login(){let c=lireCodeBoxes("codeAdminBoxes").trim().replace(/[\u0660-\u0669\u06F0-\u06F9]/g,d=>String("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹".indexOf(d)%10)); if(c===String.fromCharCode(56,52,50,55)){sessionStorage.setItem("authAdmin_casa","1"); viderCodeBoxes("codeAdminBoxes"); document.getElementById("loginAdmin").classList.add("hidden"); document.getElementById("panelAdmin").classList.remove("hidden");renderAgents();renderQuartiersDirection();} else {let m=document.getElementById("msgAdmin"); if(!m){let el=document.getElementById("loginAdmin"); let pp=document.createElement("p"); pp.id="msgAdmin"; pp.style.color="#dc2626"; el.appendChild(pp); m=pp;} m.textContent="❌ Code Direction incorrect.";}}
+function loginPro(){let c=lireCodeBoxes("codeProBoxes").trim().replace(/[\u0660-\u0669\u06F0-\u06F9]/g,d=>String("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹".indexOf(d)%10)); if(c==="2026"){sessionStorage.setItem("authPro_casa","1"); viderCodeBoxes("codeProBoxes"); document.getElementById("loginPro").classList.add("hidden"); document.getElementById("panelPro").classList.remove("hidden");} else {document.getElementById("msgPro").textContent="❌ Code incorrect. Demandez le code à la Direction.";}}
+function login(){let c=lireCodeBoxes("codeAdminBoxes").trim().replace(/[\u0660-\u0669\u06F0-\u06F9]/g,d=>String("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹".indexOf(d)%10)); if(c==="1971"){sessionStorage.setItem("authAdmin_casa","1"); viderCodeBoxes("codeAdminBoxes"); document.getElementById("loginAdmin").classList.add("hidden"); document.getElementById("panelAdmin").classList.remove("hidden");renderAgents();renderQuartiersDirection();} else {let m=document.getElementById("msgAdmin"); if(!m){let el=document.getElementById("loginAdmin"); let pp=document.createElement("p"); pp.id="msgAdmin"; pp.style.color="#dc2626"; el.appendChild(pp); m=pp;} m.textContent="❌ Code Direction incorrect.";}}
 function setMode(m){mode=m;localStorage.setItem("mode_casa",m);document.getElementById("modeLabel2").textContent=m==="manuel"?"MANUEL":"AUTOMATIQUE";document.querySelectorAll('input[name="mode"]').forEach(r=>r.checked=(r.value===m));}
 function renouveler(){
  let nom=document.getElementById("aNom").value.trim(), metier=document.getElementById("aMetier").value.trim()||"Professionnel", code=document.getElementById("aCode").value.trim(), wa=document.getElementById("aWA").value.trim(), tel=document.getElementById("aTel").value.trim(), q=document.getElementById("aQuartier").value, prix=Number(document.getElementById("aPrix").value||200);
@@ -604,7 +534,7 @@ function renderAgents(){
   <button class="btn-act" onclick="setStatut(${realIdx},'active')">✅ Activer</button>
   <button class="btn-att" onclick="setStatut(${realIdx},'attente')">⏸️ En attente</button>
   <button class="btn-non" onclick="setStatut(${realIdx},'non')">🔴 Non renouvelé</button>
-  <button class="btn-del" type="button" data-del-idx="${realIdx}" data-del-nom="${a.nom}">🗑️ Supprimer</button>
+  <button class="btn-del" onclick="supprimerAgentParNom('${a.nom.replace(/'/g,"")}')">🗑️ Supprimer</button>
   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
   <button class="btn-att" onclick="corrigerAvisParNom('${a.nom.replace(/'/g,"")}')">✏️ Corriger la note (faute d’évaluation)</button>
   </div><div id="corriger-${realIdx}" style="margin-top:8px"></div><div class="small">${proLie && proLie.avisVerifie ? '✅ Décision Direction : Avis '+ (proLie.avisDecision||'gardé') +' - Vérifié par toi' : '⏳ Avis non encore vérifiés par la Direction'}</div>
@@ -629,37 +559,19 @@ function reparerSync(){
  // Si pros est vide mais agents ne l'est pas, on a déjà réparé. Si les 2 sont vides, on remet les démos.
  saveAgents(); savePros(); render(); alert("Synchronisation faite ! Les professionnels Activés doivent maintenant apparaître dans la Zone Client. Clique sur 'Tous' en haut de la Zone Client.");
 }
-function supprimerAgentParIdx(idx, btn){
-  idx=Number(idx);
-  if(isNaN(idx) || !agents[idx]){ afficherMsgSupprimer("❌ Professionnel introuvable, recharge la page.", false); return; }
-  // ÉTAPE 1 : premier clic = on arme, PAS de confirm() (Chrome peut le bloquer)
-  if(btn && !btn.dataset.arme){
-    btn.dataset.arme="1";
-    btn.style.background="#dc2626"; btn.style.color="#fff"; btn.style.fontWeight="800";
-    var nomA=agents[idx].nom;
-    btn.textContent="⚠️ CLIQUE ENCORE pour supprimer "+nomA;
-    afficherMsgSupprimer("⚠️ Tu veux vraiment supprimer "+nomA+" ? Clique ENCORE sur le même bouton rouge.", false);
-    setTimeout(function(){ try{ if(btn){ delete btn.dataset.arme; btn.textContent="🗑️ Supprimer"; btn.style.background=""; btn.style.color=""; } }catch(e){} }, 5000);
-    return;
-  }
-  // ÉTAPE 2 : deuxième clic = suppression réelle
-  var nomSup=agents[idx].nom;
-  try{
-    ajouterSupprime(nomSup);
-    agents.splice(idx,1);
-    pros=pros.filter(function(p){return p.n.toLowerCase()!==nomSup.toLowerCase();});
-    try{ var v=JSON.parse(localStorage.getItem("votes_casa")||"{}"); delete v[nomSup.toLowerCase()]; localStorage.setItem("votes_casa",JSON.stringify(v)); }catch(e){}
-    try{ var vd=JSON.parse(localStorage.getItem("votes_detail_casa")||"{}"); delete vd[nomSup.toLowerCase()]; localStorage.setItem("votes_detail_casa",JSON.stringify(vd)); }catch(e){}
-    saveAgents(); savePros();
-  }catch(err){ afficherMsgSupprimer("❌ Erreur suppression : "+err.message, false); return; }
-  try{ renderAgents(); }catch(e){}
-  try{ render(); }catch(e){}
-  afficherMsgSupprimer("✅ "+nomSup+" supprimé définitivement. Il ne reviendra plus.", true);
-}
 function supprimerAgentParNom(nom){
-  var idx=agents.findIndex(function(a){return a.nom.toLowerCase()===String(nom).trim().toLowerCase();});
-  if(idx===-1){ afficherMsgSupprimer("Professionnel introuvable, liste déjà à jour.", false); return; }
-  supprimerAgentParIdx(idx, null);
+  var idx=agents.findIndex(function(a){return a.nom.toLowerCase()===String(nom).toLowerCase();});
+  if(idx===-1) return alert("Professionnel introuvable, liste déjà à jour.");
+  if(!confirm("Supprimer "+agents[idx].nom+" ?\nIl ne sera plus affiché dans la Zone Client.")) return;
+  var nomSup=agents[idx].nom;
+  agents.splice(idx,1);
+  pros=pros.filter(function(p){return p.n.toLowerCase()!==nomSup.toLowerCase();});
+  try{ var v=JSON.parse(localStorage.getItem("votes_casa")||"{}"); delete v[nomSup.toLowerCase()]; localStorage.setItem("votes_casa",JSON.stringify(v)); }catch(e){}
+  try{ var vd=JSON.parse(localStorage.getItem("votes_detail_casa")||"{}"); delete vd[nomSup.toLowerCase()]; localStorage.setItem("votes_detail_casa",JSON.stringify(vd)); }catch(e){}
+  saveAgents(); savePros();
+  try{ render(); }catch(e){}
+  try{ renderAgents(); }catch(e){}
+  alert("✅ "+nomSup+" supprimé.");
 }
 function supprimerAgent(i){ if(agents[i]) supprimerAgentParNom(agents[i].nom); }
 function ajouter(){
@@ -677,27 +589,6 @@ function renderQuartiersDirection(){let el=document.getElementById("listeQuartie
 function ajouterQuartier(){let v=document.getElementById("newQuartier").value.trim();if(!v) return alert("Écris un quartier");if(quartiers.includes(v)) return alert("Ce quartier existe déjà");quartiers.push(v);saveQuartiers();document.getElementById("newQuartier").value="";render();}
 function supprimerQuartier(i){if(!confirm("Supprimer "+quartiers[i]+" ?")) return;quartiers.splice(i,1);saveQuartiers();if(qSel!=="Tous"&&!quartiers.includes(qSel)) qSel="Tous";render();}
 ['codePro','codeAdmin'].forEach(function(id){var el=document.getElementById(id); if(el){el.addEventListener('focus',function(){this.setAttribute('autocomplete','new-password');});}});
-antiAutofillTout(); 
-// Écouteur unique pour Supprimer en Zone Direction (marche même si la liste est re-créée)
-(function(){
-  function installerSupprimer(){
-    var liste=document.getElementById("listeAgents");
-    if(!liste || liste.dataset.delInstalle==="1") return;
-    liste.dataset.delInstalle="1";
-    liste.addEventListener("click", function(e){
-      var btn=e.target.closest ? e.target.closest("[data-del-idx]") : null;
-      if(!btn) return;
-      e.preventDefault(); e.stopPropagation();
-      supprimerAgentParIdx(btn.getAttribute("data-del-idx"), btn);
-    });
-  }
-  // On ré-essaie à chaque affichage de la Direction
-  var _oldRenderAgents = renderAgents;
-  renderAgents = function(){ _oldRenderAgents(); installerSupprimer(); };
-  document.addEventListener("DOMContentLoaded", installerSupprimer);
-  setTimeout(installerSupprimer, 500);
-})();
-
 verrouillerTout(); setMode(mode); render(); renderActs(); show('plate'); ['aCode'].forEach(function(id){var el=document.getElementById(id); if(el){ el.value=''; el.setAttribute('autocomplete','off'); el.setAttribute('autocorrect','off'); el.setAttribute('autocapitalize','off'); el.setAttribute('spellcheck','false'); el.setAttribute('data-lpignore','true'); el.setAttribute('data-1p-ignore','true'); el.setAttribute('readonly',''); el.addEventListener('focus',function(){this.removeAttribute('readonly');}); }});
   document.querySelectorAll('form').forEach(function(f){f.setAttribute('autocomplete','off');});
   window.addEventListener('pagehide', function(){ try{ sessionStorage.removeItem('authAdmin_casa'); sessionStorage.removeItem('authPro_casa'); }catch(e){} });
